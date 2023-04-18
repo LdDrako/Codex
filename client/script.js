@@ -76,10 +76,17 @@ const handleSubmit = async (e) => {
     const messageDiv = document.getElementById(uniqueId);
 
     loader(messageDiv);
+}
     
+    form.addEventListener('submit', handleSubmit);
+    form.addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+        handleSubmit(e);
+    }
+    })
     // fetch data from server --> bot's response
 
-    const response = await fetch('https://codex-0tor.onrender.com', {
+    const response = await fetch('http://localhost:5000', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -104,11 +111,4 @@ const handleSubmit = async (e) => {
 
         alert(err);
     }
-}
 
-form.addEventListener('submit', handleSubmit);
-form.addEventListener('keyup', (e) => {
-    if (e.keyCode === 13) {
-        handleSubmit(e);
-    }
-})
